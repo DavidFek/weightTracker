@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weight Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <h1>Weight Tracker</h1>
+    <div class="main-wrapper">
+      <div class="weight-form__wrapper">
+        <form class="weight-form" onsubmit="addWeightEntry(event)">
+          <label for="date">Date:</label>
+          <input
+            type="date"
+            name="date"
+            id="date"
+            class="weight-form__date"
+            required
+          />
+          <label for="weight">Weight:</label>
+          <div class="weight-form__weight-wrapper">
+            <input
+              type="number"
+              class="weight-form__weight"
+              id="weight"
+              name="weight"
+              min="0"
+              step="0.1"
+              pattern="\d+(\.\d{1})?"
+              required
+            />
+            <span class="kg-label">kg</span>
+          </div>
+          <button
+            type="submit"
+            class="button weight-form__button"
+            onclick="addWeightEntry()"
+          >
+            Add
+          </button>
+        </form>
+      </div>
+      <h2>History</h2>
+      <div class="weight-list">
+        <table>
+          <thead>
+            <tr>
+              <th class="weight-list__weight">Weight</th>
+              <th class="weight-list__date">Date</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <h2>Statistics</h2>
+      <div class="weight-statistics__wrapper">
+        <div id="statistics" class="weight-statistics__buttons">
+          <button
+            id="week-btn"
+            class="button weight-statistics__buttons-week"
+            onclick="weeklyChart()"
+          >
+            Week
+          </button>
+          <button
+            id="month-btn"
+            class="button weight-statistics__buttons-month"
+            onclick="monthlyChart()"
+          >
+            Month
+          </button>
+          <button
+            id="year-btn"
+            class="button weight-statistics__buttons-year"
+            onclick="yearlyChart()"
+          >
+            Year
+          </button>
+          <button
+            id="lifetime-btn"
+            class="button weight-statistics__buttons-lifetime"
+            onclick="allTimeChart()"
+          >
+            Lifetime
+          </button>
+        </div>
+        <div id="chart" class="weight-statistics__chart">
+          <canvas id="lineChart"> </canvas>
+        </div>
+        <div class="weight-statistics__stats__wrapper">
+          <div class="weight-statistics__stats-current">
+            <p class="weight-statistics__stats-text">Current weight</p>
+            <p
+              class="weight-statistics__stats-current-weight weight-statistics__stats-data"
+            >
+              0.0 kg
+            </p>
+          </div>
+          <div class="weight-statistics__stats-start">
+            <p class="weight-statistics__stats-text">
+              Weight at the start of the period
+            </p>
+            <p
+              class="weight-statistics__stats-start-weight weight-statistics__stats-data"
+            >
+              0.0 kg
+            </p>
+          </div>
+        </div>
+        <div class="weight-statistics__stats-progress">
+          <p class="weight-statistics__stats-text">Progress</p>
+          <p
+            class="weight-statistics__stats-progress-weight weight-statistics__stats-data"
+          >
+            0.0 kg
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
